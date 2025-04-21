@@ -1,0 +1,111 @@
+plugins {
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.minecraftforge.gradle' version '[6.0.24,6.2)'
+}
+
+version = findProperty('mod_version') ?: '1.0.0'
+group = findProperty('mod_group_id') ?: 'com.henrique.danerick'
+
+base {
+    archivesName = findProperty('mod_id') ?: 'danerick'
+}
+
+// Mojang ships Java 21 to end users in 1.20.5+, so your mod should target Java 21.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
+
+minecraft {
+    mappings channel: findProperty('mapping_channel'), version: findProperty('mapping_version')
+    reobf = false
+    copyIdeResources = true
+
+    runs {
+        client {
+            property 'forge.enabledGameTestNamespaces', findProperty('mod_id')
+        }
+        server {
+            property 'forge.enabledGameTestNamespaces', findProperty('mod_id')
+            args '--nogui'
+        }
+        gameTestServer {
+            property 'forge.enabledGameTestNamespaces', findProperty('mod_id')
+        }
+        data {
+            workingDirectory project.file('run-data')
+            args '--mod', findProperty('mod_id'), '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+repositories {
+    // Repositories (defaults provided by Forge)
+}
+
+dependencies {
+    minecraft "net.minecraftforge:forge:${findProperty('minecraft_version')}-${findProperty('forge_version')}"
+}
+
+tasks.named('processResources', ProcessResources).configure {
+    var replaceProperties = [
+            minecraft_version: findProperty('minecraft_version'),
+            forge_version: findProperty('forge_version'),
+            mod_id: findProperty('mod_id'),
+            mod_name: findProperty('mod_name'),
+            mod_license: findProperty('mod_license'),
+            mod_version: findProperty('mod_version'),
+            mod_authors: findProperty('mod_authors'),
+            mod_description: findProperty('mod_description')
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
+        expand replaceProperties + [project: project]
+    }
+}
+
+tasks.named('jar', Jar).configure {
+    manifest {
+        attributes([
+                'Specification-Title'     : findProperty('mod_id'),
+                'Specification-Vendor'    : findProperty('mod_authors'),
+                'Specification-Version'   : '1',
+                'Implementation-Title'    : project.name,
+                'Implementation-Version'  : project.jar.archiveVersion,
+                'Implementation-Vendor'   : findProperty('mod_authors')
+        ])
+    }
+}
+
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            artifact jar
+        }
+    }
+    repositories {
+        maven {
+            url "file://${project.projectDir}/mcmodsrepo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+idea.module { downloadJavadoc = downloadSources = true }
+
+eclipse {
+    synchronizationTasks 'genEclipseRuns'
+}
+
+sourceSets.each {
+    def dir = layout.buildDirectory.dir("sourcesSets/$it.name")
+    it.output.resourcesDir = dir
+    it.java.destinationDirectory = dir
+}
