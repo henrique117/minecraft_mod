@@ -19,4 +19,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> DEEPSLATE_FIRE_ORE = BLOCKS.register("deepslate_fire_ore",
         () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_ORE)));
 
+    public static final List<RegistryObject<Block>> blocksList = List.of(
+        FIRE_ORE,
+        DEEPSLATE_FIRE_ORE
+    );
 }

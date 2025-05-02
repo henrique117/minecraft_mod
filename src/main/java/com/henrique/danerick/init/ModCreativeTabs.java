@@ -16,7 +16,7 @@ public class ModCreativeTabs {
         .title(Component.translatable("item_group." + Danerick.MODID + ".danerick_tab"))
         .icon(() -> new ItemStack(ModItems.FIRE_INGOT.get()))
         .displayItems((params, output) -> {
-            for (RegistryObject<?> item : ModItems.itemsList) {
+            for (RegistryObject<?> item : ModItems.allItemsList) {
                 Object obj = item.get();
                 if (obj instanceof Item) output.accept((Item) obj);
             }
