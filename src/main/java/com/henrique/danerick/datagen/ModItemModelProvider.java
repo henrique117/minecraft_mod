@@ -15,10 +15,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         super(output, Danerick.MODID, existingFileHelper);
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void registerModels() {
-        for (RegistryObject<? extends Item> item : ModItems.itemsList) {
+        for (RegistryObject<Item> item : ModItems.itemsList) {
             simpleItem((RegistryObject<Item>) item);
         }
     }

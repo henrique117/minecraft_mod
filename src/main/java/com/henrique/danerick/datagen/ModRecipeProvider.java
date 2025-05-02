@@ -26,8 +26,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     @Override
     protected void buildRecipes(@NotNull Consumer<FinishedRecipe> pWriter) {
-        oreBlasting(pWriter, List.of(ModBlocks.FIRE_ORE.get(), ModBlocks.DEEPSLATE_FIRE_ORE.get()), RecipeCategory.MISC, ModItems.FIRE_INGOT.get(), 0.25f, 100, "fire_ore");
-        oreSmelting(pWriter, List.of(ModBlocks.FIRE_ORE.get(), ModBlocks.DEEPSLATE_FIRE_ORE.get()), RecipeCategory.MISC, ModItems.FIRE_INGOT.get(), 0.25f, 200, "fire_ore");
+
     }
 
     protected static void oreSmelting(Consumer<FinishedRecipe> pFinishedRecipeConsumer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTIme, String pGroup) {
@@ -40,10 +39,9 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
     protected static void oreCooking(Consumer<FinishedRecipe> pFinishedRecipeConsumer, RecipeSerializer<? extends AbstractCookingRecipe> pCookingSerializer, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult, float pExperience, int pCookingTime, String pGroup, String pRecipeName) {
         for(ItemLike itemlike : pIngredients) {
-            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult,
-                            pExperience, pCookingTime, pCookingSerializer)
-                    .group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
-                    .save(pFinishedRecipeConsumer,  Danerick.MODID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
+            SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer)
+                .group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
+                .save(pFinishedRecipeConsumer,  Danerick.MODID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
         }
     }
 }

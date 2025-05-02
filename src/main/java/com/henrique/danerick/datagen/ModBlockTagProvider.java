@@ -20,9 +20,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
-                .add(ModBlocks.FIRE_ORE.get(), ModBlocks.DEEPSLATE_FIRE_ORE.get());
+                .add(ModBlocks.NORMAL_FIRE_ORE.get(), ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(), ModBlocks.BOOSTED_FIRE_ORE.get());
 
         this.tag(BlockTags.NEEDS_DIAMOND_TOOL)
-                .add(ModBlocks.FIRE_ORE.get(), ModBlocks.DEEPSLATE_FIRE_ORE.get());
+                .add(ModBlocks.NORMAL_FIRE_ORE.get(), ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(), ModBlocks.BOOSTED_FIRE_ORE.get());
     }
 }
