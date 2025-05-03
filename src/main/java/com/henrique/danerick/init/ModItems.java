@@ -21,6 +21,7 @@ public class ModItems {
     public static final RegistryObject<Item> WATER_SHARD = ITEMS.register("water_shard", () -> new ModItem(new Properties(), "water_shard"));
 
     public static final RegistryObject<BlockItem> NORMAL_FIRE_ORE_ITEM = ITEMS.register("normal_fire_ore", () -> new BlockItem(ModBlocks.NORMAL_FIRE_ORE.get(), new Properties()));
+    public static final RegistryObject<BlockItem> NORMAL_WATER_ORE_ITEM = ITEMS.register("normal_water_ore", () -> new BlockItem(ModBlocks.NORMAL_WATER_ORE.get(), new Properties()));
     public static final RegistryObject<BlockItem> NORMAL_DEEPSLATE_FIRE_ORE_ITEM = ITEMS.register("normal_deepslate_fire_ore", () -> new BlockItem(ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(), new Properties()));
     public static final RegistryObject<BlockItem> BOOSTED_FIRE_ORE_ITEM = ITEMS.register("boosted_fire_ore", () -> new BlockItem(ModBlocks.BOOSTED_FIRE_ORE.get(), new Properties()));
     public static final RegistryObject<BlockItem> BOOSTED_WATER_ORE_ITEM = ITEMS.register("boosted_water_ore", () -> new BlockItem(ModBlocks.BOOSTED_WATER_ORE.get(), new Properties()));
@@ -30,6 +31,7 @@ public class ModItems {
         FIRE_SHARD,
         WATER_SHARD,
         NORMAL_FIRE_ORE_ITEM,
+        NORMAL_WATER_ORE_ITEM,
         NORMAL_DEEPSLATE_FIRE_ORE_ITEM,
         BOOSTED_FIRE_ORE_ITEM,
         BOOSTED_WATER_ORE_ITEM
@@ -37,8 +39,8 @@ public class ModItems {
 
     public static final List<RegistryObject<Item>> itemsList = List.of(
         FIRE_SHARD,
-        FIRE_INGOT,
-        WATER_SHARD
+        WATER_SHARD,
+        FIRE_INGOT
     );
 
 }

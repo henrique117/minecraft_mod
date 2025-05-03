@@ -27,6 +27,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
 
         this.add(ModBlocks.NORMAL_FIRE_ORE.get(),
         block -> createRawNormalOreDrops(ModBlocks.NORMAL_FIRE_ORE.get(), ModItems.FIRE_SHARD.get()));
+        this.add(ModBlocks.NORMAL_WATER_ORE.get(),
+        block -> createRawNormalOreDrops(ModBlocks.NORMAL_WATER_ORE.get(), ModItems.WATER_SHARD.get()));
         this.add(ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(),
         block -> createRawNormalOreDrops(ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(), ModItems.FIRE_SHARD.get()));
 

@@ -1,0 +1,17 @@
+{
+  "item.danerick.fire_ingot": "Barra de Fogo",
+  "item.danerick.fire_shard": "Fragmento de Fogo",
+  "item.danerick.water_shard": "Fragmento de Água",
+
+  "block.danerick.normal_fire_ore": "Minério de Fogo",
+  "block.danerick.normal_water_ore": "Minério de Água",
+  "block.danerick.normal_deepslate_fire_ore": "Minério de Fogo Profundo",
+  "block.danerick.boosted_fire_ore": "Minério de Fogo Aprimorado",
+  "block.danerick.boosted_water_ore": "Minério de Água Aprimorado",
+
+  "tooltip.danerick.fire_ingot": "Apenas uma barra de fogo",
+  "tooltip.danerick.fire_shard": "Apenas um fragmento de fogo",
+  "tooltip.danerick.water_shard": "Apenas um fragmento de água",
+
+  "item_group.danerick.danerick_tab": "Danerick's Mod"
+}
