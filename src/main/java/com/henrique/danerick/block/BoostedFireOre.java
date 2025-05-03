@@ -8,19 +8,29 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.Fluids;
 
 @SuppressWarnings("deprecation")
 public class BoostedFireOre extends Block {
 
     private static final int FIRE_SEARCH_RADIUS = 4;
+    private static final int FIRE_DRY_RADIUS = 7;
+    private static final float FIRE_EXPLOSION_POWER = 3.0F;
 
     public BoostedFireOre(Properties properties) {
         super(properties);
+    }
+
+    @Override
+    public boolean canDropFromExplosion(BlockState state, BlockGetter level, BlockPos pos, Explosion explosion) {
+        return false;
     }
 
     @Override
@@ -40,7 +50,12 @@ public class BoostedFireOre extends Block {
             serverLevel.setBlock(flammableBlock, Blocks.FIRE.defaultBlockState(), 11);
         }
 
-        serverLevel.scheduleTick(blockPos, this, 20);
+        if(hasWaterNearby(serverLevel, blockPos)) {
+            dryNearbyWater(serverLevel, blockPos);
+            explodeBlock(serverLevel, blockPos);
+        }
+
+        serverLevel.scheduleTick(blockPos, this, 10);
     }
 
     @Override
@@ -90,5 +105,40 @@ public class BoostedFireOre extends Block {
     private boolean isOnFire(ServerLevel level, BlockPos pos) {
         BlockPos above = pos.above();
         return level.getBlockState(above).is(Blocks.FIRE);
+    }
+
+    private boolean hasWaterNearby(ServerLevel level, BlockPos pos) {
+        for (Direction direction : Direction.values()) {
+            if (direction != Direction.DOWN) {
+                BlockPos neighborPos = pos.relative(direction);
+                BlockState neighborState = level.getBlockState(neighborPos);
+
+                if (neighborState.getFluidState().is(Fluids.WATER)) {
+                    System.out.println("Tem agua");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void dryNearbyWater(ServerLevel level, BlockPos pos) {
+        for (int dx = -FIRE_DRY_RADIUS; dx <= FIRE_DRY_RADIUS; dx++) {
+            for (int dy = -FIRE_DRY_RADIUS; dy <= FIRE_DRY_RADIUS; dy++) {
+                for (int dz = -FIRE_DRY_RADIUS; dz <= FIRE_DRY_RADIUS; dz++) {
+                    BlockPos checkPos = pos.offset(dx, dy, dz);
+                    BlockState state = level.getBlockState(checkPos);
+
+                    if (state.getFluidState().is(Fluids.WATER)) {
+                        level.setBlock(checkPos, Blocks.AIR.defaultBlockState(), 3);
+                    }
+                }
+            }
+        }
+        System.out.println("sequei");
+    }
+
+    private void explodeBlock(ServerLevel level, BlockPos pos) {
+        level.explode(null, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, FIRE_EXPLOSION_POWER, Level.ExplosionInteraction.BLOCK);
     }
 }
