@@ -114,7 +114,6 @@ public class BoostedFireOre extends Block {
                 BlockState neighborState = level.getBlockState(neighborPos);
 
                 if (neighborState.getFluidState().is(Fluids.WATER)) {
-                    System.out.println("Tem agua");
                     return true;
                 }
             }
@@ -135,7 +134,6 @@ public class BoostedFireOre extends Block {
                 }
             }
         }
-        System.out.println("sequei");
     }
 
     private void explodeBlock(ServerLevel level, BlockPos pos) {
