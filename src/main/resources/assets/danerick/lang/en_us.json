@@ -1,13 +1,16 @@
 {
   "item.danerick.fire_ingot": "Fire Ingot",
   "item.danerick.fire_shard": "Fire Shard",
+  "item.danerick.water_shard": "Water Shard",
 
   "block.danerick.normal_fire_ore": "Fire Ore",
   "block.danerick.normal_deepslate_fire_ore": "Deepslate Fire Ore",
   "block.danerick.boosted_fire_ore": "Boosted Fire Ore",
+  "block.danerick.boosted_water_ore": "Boosted Water Ore",
 
   "tooltip.danerick.fire_ingot": "Just a Fire Ingot",
   "tooltip.danerick.fire_shard": "Just a Fire Shard",
+  "tooltip.danerick.water_shard": "Just a Water Shard",
 
   "item_group.danerick.danerick_tab": "Danerick's Mod"
 }

@@ -20,7 +20,7 @@ public class NormalFireOre extends Block {
         ItemStack currentItem = player.getMainHandItem();
 
         if (currentItem.is(ItemTags.TOOLS)) {
-            currentItem.hurtAndBreak((int) Math.round(currentItem.getMaxDamage() * 0.25), player, player1 -> player1.broadcastBreakEvent(player1.getUsedItemHand()));
+            currentItem.hurtAndBreak((int) Math.round(currentItem.getMaxDamage() * 0.34), player, player1 -> player1.broadcastBreakEvent(player1.getUsedItemHand()));
         }
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
