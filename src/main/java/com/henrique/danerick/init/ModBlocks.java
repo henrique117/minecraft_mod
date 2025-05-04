@@ -27,12 +27,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> BOOSTED_WATER_ORE = BLOCKS.register("boosted_water_ore",
         () -> new BoostedWaterOre(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
 
+    public static final RegistryObject<Block> NORMAL_ELETRIC_ORE = BLOCKS.register("normal_eletric_ore",
+        () -> new NormalEletricOre(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
     public static final RegistryObject<Block> BOOSTED_ELETRIC_ORE = BLOCKS.register("boosted_eletric_ore",
         () -> new BoostedEletricOre(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
 
     public static final List<RegistryObject<Block>> blocksList = List.of(
         NORMAL_FIRE_ORE,
         NORMAL_WATER_ORE,
+        NORMAL_ELETRIC_ORE,
         NORMAL_DEEPSLATE_FIRE_ORE,
         BOOSTED_FIRE_ORE,
         BOOSTED_WATER_ORE,
