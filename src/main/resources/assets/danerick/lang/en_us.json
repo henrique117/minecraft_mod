@@ -1,17 +1,24 @@
 {
   "item.danerick.fire_ingot": "Fire Ingot",
+  "item.danerick.water_ingot": "Water Ingot",
+  "item.danerick.eletric_ingot": "Eletric Ingot",
   "item.danerick.fire_shard": "Fire Shard",
   "item.danerick.water_shard": "Water Shard",
+  "item.danerick.eletric_shard": "Eletric Shard",
 
   "block.danerick.normal_fire_ore": "Fire Ore",
   "block.danerick.normal_water_ore": "Water Ore",
   "block.danerick.normal_deepslate_fire_ore": "Deepslate Fire Ore",
   "block.danerick.boosted_fire_ore": "Boosted Fire Ore",
   "block.danerick.boosted_water_ore": "Boosted Water Ore",
+  "block.danerick.boosted_eletric_ore": "Boosted Eletric Ore",
 
   "tooltip.danerick.fire_ingot": "Just a Fire Ingot",
   "tooltip.danerick.fire_shard": "Just a Fire Shard",
+  "tooltip.danerick.water_ingot": "Just a Water Ingot",
   "tooltip.danerick.water_shard": "Just a Water Shard",
+  "tooltip.danerick.eletric_ingot": "Just a Eletric Ingot",
+  "tooltip.danerick.eletric_shard": "Just a Eletric Shard",
 
   "item_group.danerick.danerick_tab": "Danerick's Mod"
 }
