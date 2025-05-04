@@ -3,10 +3,7 @@ package com.henrique.danerick.init;
 import java.util.List;
 
 import com.henrique.danerick.Danerick;
-import com.henrique.danerick.block.BoostedFireOre;
-import com.henrique.danerick.block.BoostedWaterOre;
-import com.henrique.danerick.block.NormalFireOre;
-import com.henrique.danerick.block.NormalWaterOre;
+import com.henrique.danerick.block.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -30,11 +27,15 @@ public class ModBlocks {
     public static final RegistryObject<Block> BOOSTED_WATER_ORE = BLOCKS.register("boosted_water_ore",
         () -> new BoostedWaterOre(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
 
+    public static final RegistryObject<Block> BOOSTED_ELETRIC_ORE = BLOCKS.register("boosted_eletric_ore",
+        () -> new BoostedEletricOre(BlockBehaviour.Properties.copy(Blocks.DIAMOND_ORE)));
+
     public static final List<RegistryObject<Block>> blocksList = List.of(
         NORMAL_FIRE_ORE,
         NORMAL_WATER_ORE,
         NORMAL_DEEPSLATE_FIRE_ORE,
         BOOSTED_FIRE_ORE,
-        BOOSTED_WATER_ORE
+        BOOSTED_WATER_ORE,
+        BOOSTED_ELETRIC_ORE
     );
 }

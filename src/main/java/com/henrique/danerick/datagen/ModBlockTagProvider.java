@@ -29,7 +29,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             ModBlocks.NORMAL_WATER_ORE.get(),
             ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(),
             ModBlocks.BOOSTED_FIRE_ORE.get(),
-            ModBlocks.BOOSTED_WATER_ORE.get()
+            ModBlocks.BOOSTED_WATER_ORE.get(),
+            ModBlocks.BOOSTED_ELETRIC_ORE.get()
         );
 
         List<Block> needsDiamondToolList = List.of(
@@ -37,7 +38,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             ModBlocks.NORMAL_WATER_ORE.get(),
             ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(),
             ModBlocks.BOOSTED_FIRE_ORE.get(),
-            ModBlocks.BOOSTED_WATER_ORE.get()
+            ModBlocks.BOOSTED_WATER_ORE.get(),
+            ModBlocks.BOOSTED_ELETRIC_ORE.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(mineableWithPickaxeList.toArray(new Block[0]));
