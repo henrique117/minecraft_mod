@@ -44,22 +44,22 @@ public class BoostedEletricOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        List<Player> playerNearby = getPlayersNearby(level, pos);
+        List<LivingEntity> livingEntitiesNearby = getLivingEntitiesNearby(level, pos);
         MobEffectInstance effect = new MobEffectInstance(ModEffects.PARALYSIS_EFFECT.get(), 60, 0);
 
-        for (Player player1 : playerNearby) {
-            player1.addEffect(effect);
+        for (LivingEntity entity : livingEntitiesNearby) {
+            entity.addEffect(effect);
         }
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
 
-    private List<Player> getPlayersNearby(Level level, BlockPos center) {
+    private List<LivingEntity> getLivingEntitiesNearby(Level level, BlockPos center) {
         AABB box = new AABB(
     center.getX() - ELETRIC_PLAYER_SEARCH_RADIUS, center.getY() - ELETRIC_PLAYER_SEARCH_RADIUS, center.getZ() - ELETRIC_PLAYER_SEARCH_RADIUS,
     center.getX() + ELETRIC_PLAYER_SEARCH_RADIUS + 1, center.getY() + ELETRIC_PLAYER_SEARCH_RADIUS + 1, center.getZ() + ELETRIC_PLAYER_SEARCH_RADIUS + 1
         );
 
-        return level.getEntitiesOfClass(Player.class, box);
+        return level.getEntitiesOfClass(LivingEntity.class, box);
     }
 }

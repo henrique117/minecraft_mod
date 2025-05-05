@@ -14,6 +14,8 @@
   "block.danerick.boosted_water_ore": "Minério de Água Aprimorado",
   "block.danerick.boosted_eletric_ore": "Minério de Eletricidade Aprimorado",
 
+  "effect.danerick.paralysis_effect": "Paralisia",
+
   "tooltip.danerick.fire_ingot": "Apenas uma barra de fogo",
   "tooltip.danerick.fire_shard": "Apenas um fragmento de fogo",
   "tooltip.danerick.water_ingot": "Apenas uma barra de água",

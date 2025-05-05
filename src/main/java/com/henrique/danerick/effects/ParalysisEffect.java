@@ -9,7 +9,7 @@ import net.minecraft.world.phys.Vec3;
 
 public class ParalysisEffect extends MobEffect {
     public ParalysisEffect() {
-        super(MobEffectCategory.HARMFUL, 0xAAAAAA);
+        super(MobEffectCategory.HARMFUL, 0xFFFF00);
     }
 
     @Override
