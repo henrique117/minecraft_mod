@@ -1,7 +1,7 @@
 package com.henrique.danerick.block;
 
+import com.henrique.danerick.util.AuxFunctions;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
@@ -15,7 +15,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 
 @SuppressWarnings("deprecation")
 public class BoostedFireOre extends Block {
@@ -37,25 +36,25 @@ public class BoostedFireOre extends Block {
     public void onPlace(BlockState blockState, Level serverLevel, BlockPos blockPos, BlockState oldState, boolean bool) {
         super.onPlace(blockState, serverLevel, blockPos, oldState, bool);
 
-        serverLevel.scheduleTick(blockPos, this, 20);
+        serverLevel.scheduleTick(blockPos, this, 5);
     }
 
     @Override
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         super.tick(blockState, serverLevel, blockPos, randomSource);
 
-        BlockPos flammableBlock = hasFlammableNearby(serverLevel, blockPos);
+        BlockPos flammableBlock = AuxFunctions.hasFlammableNearby(serverLevel, blockPos, FIRE_SEARCH_RADIUS);
 
-        if (flammableBlock != null && !isOnFire(serverLevel, flammableBlock)) {
+        if (flammableBlock != null && !AuxFunctions.isOnFire(serverLevel, flammableBlock)) {
             serverLevel.setBlock(flammableBlock, Blocks.FIRE.defaultBlockState(), 11);
         }
 
-        if(hasWaterNearby(serverLevel, blockPos)) {
-            dryNearbyWater(serverLevel, blockPos);
+        if(AuxFunctions.hasWaterNearby(serverLevel, blockPos)) {
+            AuxFunctions.dryNearbyWater(serverLevel, blockPos, FIRE_DRY_RADIUS);
             explodeBlock(serverLevel, blockPos);
         }
 
-        serverLevel.scheduleTick(blockPos, this, 10);
+        serverLevel.scheduleTick(blockPos, this, 5);
     }
 
     @Override
@@ -80,60 +79,6 @@ public class BoostedFireOre extends Block {
     @Override
     public boolean isRandomlyTicking(BlockState blockState) {
         return true;
-    }
-
-    private BlockPos hasFlammableNearby(ServerLevel level, BlockPos pos) {
-        for (int dx = -FIRE_SEARCH_RADIUS; dx <= FIRE_SEARCH_RADIUS; dx++) {
-            for (int dy = -FIRE_SEARCH_RADIUS; dy <= FIRE_SEARCH_RADIUS; dy++) {
-                for (int dz = -FIRE_SEARCH_RADIUS; dz <= FIRE_SEARCH_RADIUS; dz++) {
-                    BlockPos checkPos = pos.offset(dx, dy, dz);
-                    BlockState state = level.getBlockState(checkPos);
-
-                    if (state.isFlammable(level, checkPos, Direction.UP)) {
-                        BlockPos firePos = checkPos.above();
-
-                        if (level.getBlockState(firePos).isAir()) {
-                            return firePos;
-                        }
-                    }
-                }
-            }
-        }
-        return null;
-    }
-
-    private boolean isOnFire(ServerLevel level, BlockPos pos) {
-        BlockPos above = pos.above();
-        return level.getBlockState(above).is(Blocks.FIRE);
-    }
-
-    private boolean hasWaterNearby(ServerLevel level, BlockPos pos) {
-        for (Direction direction : Direction.values()) {
-            if (direction != Direction.DOWN) {
-                BlockPos neighborPos = pos.relative(direction);
-                BlockState neighborState = level.getBlockState(neighborPos);
-
-                if (neighborState.getFluidState().is(Fluids.WATER)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-    private void dryNearbyWater(ServerLevel level, BlockPos pos) {
-        for (int dx = -FIRE_DRY_RADIUS; dx <= FIRE_DRY_RADIUS; dx++) {
-            for (int dy = -FIRE_DRY_RADIUS; dy <= FIRE_DRY_RADIUS; dy++) {
-                for (int dz = -FIRE_DRY_RADIUS; dz <= FIRE_DRY_RADIUS; dz++) {
-                    BlockPos checkPos = pos.offset(dx, dy, dz);
-                    BlockState state = level.getBlockState(checkPos);
-
-                    if (state.getFluidState().is(Fluids.WATER)) {
-                        level.setBlock(checkPos, Blocks.AIR.defaultBlockState(), 3);
-                    }
-                }
-            }
-        }
     }
 
     private void explodeBlock(ServerLevel level, BlockPos pos) {
