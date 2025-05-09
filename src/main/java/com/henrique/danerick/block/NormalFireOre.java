@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
 public class NormalFireOre extends Block {
+
     public NormalFireOre(Properties properties) {
         super(properties);
     }

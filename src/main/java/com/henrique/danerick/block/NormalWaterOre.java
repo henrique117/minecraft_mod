@@ -12,6 +12,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
 public class NormalWaterOre extends Block {
+
     public NormalWaterOre(Properties properties) {
         super(properties);
     }
