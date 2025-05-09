@@ -3,9 +3,14 @@ package com.henrique.danerick.util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.phys.AABB;
+
+import java.util.List;
 
 public class AuxFunctions {
     public static BlockPos hasFlammableNearby(ServerLevel level, BlockPos pos, int radius) {
@@ -60,5 +65,14 @@ public class AuxFunctions {
                 }
             }
         }
+    }
+
+    public static List<LivingEntity> getLivingEntitiesNearby(Level level, BlockPos center, double radius) {
+        AABB box = new AABB(
+    center.getX() - radius, center.getY() - radius, center.getZ() - radius,
+    center.getX() + radius + 1, center.getY() + radius + 1, center.getZ() + radius + 1
+        );
+
+        return level.getEntitiesOfClass(LivingEntity.class, box);
     }
 }

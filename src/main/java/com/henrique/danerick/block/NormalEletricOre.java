@@ -1,8 +1,10 @@
 package com.henrique.danerick.block;
 
 import com.henrique.danerick.init.ModEffects;
+import com.henrique.danerick.util.AuxFunctions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
@@ -10,7 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.AABB;
 
 import java.util.List;
 
@@ -29,22 +30,13 @@ public class NormalEletricOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        List<Player> playerNearby = getPlayersNearby(level, pos);
+        List<LivingEntity> livingEntitiesNearby = AuxFunctions.getLivingEntitiesNearby(level, pos, ELETRIC_PLAYER_SEARCH_RADIUS);
         MobEffectInstance effect = new MobEffectInstance(ModEffects.PARALYSIS_EFFECT.get(), 40, 0);
 
-        for (Player player1 : playerNearby) {
-            player1.addEffect(effect);
+        for (LivingEntity entity : livingEntitiesNearby) {
+            entity.addEffect(effect);
         }
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
-    }
-
-    private List<Player> getPlayersNearby(Level level, BlockPos center) {
-        AABB box = new AABB(
-    center.getX() - ELETRIC_PLAYER_SEARCH_RADIUS, center.getY() - ELETRIC_PLAYER_SEARCH_RADIUS, center.getZ() - ELETRIC_PLAYER_SEARCH_RADIUS,
-    center.getX() + ELETRIC_PLAYER_SEARCH_RADIUS + 1, center.getY() + ELETRIC_PLAYER_SEARCH_RADIUS + 1, center.getZ() + ELETRIC_PLAYER_SEARCH_RADIUS + 1
-        );
-
-        return level.getEntitiesOfClass(Player.class, box);
     }
 }
