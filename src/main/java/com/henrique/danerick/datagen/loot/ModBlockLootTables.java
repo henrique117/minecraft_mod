@@ -35,6 +35,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         block -> createRawNormalOreDrops(ModBlocks.NORMAL_ELETRIC_ORE.get(), ModItems.ELETRIC_SHARD.get()));
         this.add(ModBlocks.NORMAL_EARTH_ORE.get(),
         block -> createRawNormalOreDrops(ModBlocks.NORMAL_EARTH_ORE.get(), ModItems.EARTH_SHARD.get()));
+        this.add(ModBlocks.NORMAL_ENDWARP_ORE.get(),
+        block -> createRawNormalOreDrops(ModBlocks.NORMAL_ENDWARP_ORE.get(), ModItems.ENDWARP_SHARD.get()));
 
         this.add(ModBlocks.BOOSTED_FIRE_ORE.get(),
         block -> createRawBoostedOreDrops(ModBlocks.BOOSTED_FIRE_ORE.get(), ModItems.FIRE_SHARD.get()));
@@ -44,6 +46,8 @@ public class ModBlockLootTables extends BlockLootSubProvider {
         block -> createRawBoostedOreDrops(ModBlocks.BOOSTED_ELETRIC_ORE.get(), ModItems.ELETRIC_SHARD.get()));
         this.add(ModBlocks.BOOSTED_EARTH_ORE.get(),
         block -> createRawBoostedOreDrops(ModBlocks.BOOSTED_EARTH_ORE.get(), ModItems.EARTH_SHARD.get()));
+        this.add(ModBlocks.BOOSTED_ENDWARP_ORE.get(),
+        block -> createRawBoostedOreDrops(ModBlocks.BOOSTED_ENDWARP_ORE.get(), ModItems.ENDWARP_SHARD.get()));
     }
 
     protected LootTable.Builder createRawNormalOreDrops(Block pBlock, Item item) {
