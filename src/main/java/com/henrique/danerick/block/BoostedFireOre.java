@@ -61,7 +61,7 @@ public class BoostedFireOre extends Block {
     public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity) {
         super.stepOn(level, blockPos, blockState, entity);
 
-        entity.setSecondsOnFire(6);
+        entity.setSecondsOnFire(10);
     }
 
     @Override
