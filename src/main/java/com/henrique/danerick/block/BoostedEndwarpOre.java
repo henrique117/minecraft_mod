@@ -37,10 +37,14 @@ public class BoostedEndwarpOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        ItemStack currentItem = player.getMainHandItem();
+        for (ItemStack armorPiece : player.getArmorSlots()) {
+            AuxFunctions.addAllCurses(armorPiece);
+        }
 
-        if (currentItem.is(ItemTags.TOOLS)) {
-            AuxFunctions.addAllCurses(currentItem);
+        for (ItemStack item : player.getInventory().items) {
+            if (item.is(ItemTags.TOOLS)) {
+                AuxFunctions.addAllCurses(item);
+            }
         }
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
