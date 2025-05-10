@@ -25,9 +25,11 @@ public class NormalWaterOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        MobEffectInstance effect = new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 0);
+        MobEffectInstance effect1 = new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 200, 0);
+        MobEffectInstance effect2 = new MobEffectInstance(MobEffects.BLINDNESS, 200, 0);
 
-        player.addEffect(effect);
+        player.addEffect(effect1);
+        player.addEffect(effect2);
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
