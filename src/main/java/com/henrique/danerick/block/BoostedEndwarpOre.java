@@ -23,7 +23,7 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public class BoostedEndwarpOre extends Block {
 
-    private static final int ENDWARP_LEVITATION_RANGE = 7;
+    private static final int ENDWARP_LEVITATION_RANGE = 5;
 
     public BoostedEndwarpOre(Properties properties) {
         super(properties);
@@ -70,7 +70,7 @@ public class BoostedEndwarpOre extends Block {
 
         if (!entitiesAbove.isEmpty()) {
             for (LivingEntity entity : entitiesAbove) {
-                entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 200, 0));
+                entity.addEffect(new MobEffectInstance(MobEffects.LEVITATION, 150, 1));
             }
         }
 

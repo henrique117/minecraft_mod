@@ -16,7 +16,7 @@ import net.minecraft.world.level.material.FluidState;
 
 public class BoostedEarthOre extends Block {
 
-    private static final float EARTH_POISON_RADIUS = 5F;
+    private static final float EARTH_POISON_RADIUS = 5.5F;
 
     public BoostedEarthOre(Properties properties) {
         super(properties);
@@ -32,8 +32,8 @@ public class BoostedEarthOre extends Block {
         super.stepOn(level, blockPos, blockState, entity);
 
         if (entity instanceof LivingEntity livingEntity) {
-            MobEffectInstance effect1 = new MobEffectInstance(MobEffects.CONFUSION, 200, 0);
-            MobEffectInstance effect2 = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 200, 0);
+            MobEffectInstance effect1 = new MobEffectInstance(MobEffects.CONFUSION, 300, 0);
+            MobEffectInstance effect2 = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300, 1);
 
             livingEntity.addEffect(effect1);
             livingEntity.addEffect(effect2);
@@ -45,11 +45,11 @@ public class BoostedEarthOre extends Block {
 
         AreaEffectCloud poisonCloud = new AreaEffectCloud(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
         poisonCloud.setRadius(EARTH_POISON_RADIUS);
-        poisonCloud.setDuration(200);
+        poisonCloud.setDuration(300);
         poisonCloud.setWaitTime(20);
-        poisonCloud.setRadiusPerTick(-0.02F);
+        poisonCloud.setRadiusPerTick(-0.01F);
 
-        MobEffectInstance effect = new MobEffectInstance(MobEffects.POISON, 180, 0);
+        MobEffectInstance effect = new MobEffectInstance(MobEffects.POISON, 300, 2);
 
         poisonCloud.addEffect(effect);
 

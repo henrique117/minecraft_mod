@@ -34,7 +34,7 @@ public class NormalEarthOre extends Block {
         poisonCloud.setWaitTime(20);
         poisonCloud.setRadiusPerTick(-0.02F);
 
-        MobEffectInstance effect = new MobEffectInstance(MobEffects.POISON, 180, 0);
+        MobEffectInstance effect = new MobEffectInstance(MobEffects.POISON, 300, 0);
 
         poisonCloud.addEffect(effect);
 

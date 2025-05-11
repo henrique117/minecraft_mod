@@ -46,7 +46,7 @@ public class BoostedEletricOre extends Block {
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
         List<LivingEntity> livingEntitiesNearby = AuxFunctions.getLivingEntitiesNearby(level, pos, ELETRIC_PLAYER_SEARCH_RADIUS);
-        MobEffectInstance effect = new MobEffectInstance(ModEffects.PARALYSIS_EFFECT.get(), 60, 0);
+        MobEffectInstance effect = new MobEffectInstance(ModEffects.PARALYSIS_EFFECT.get(), 140, 0);
 
         for (LivingEntity entity : livingEntitiesNearby) {
             entity.addEffect(effect);

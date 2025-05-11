@@ -58,8 +58,8 @@ public class BoostedWaterOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        MobEffectInstance effect1 = new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 400, 1);
-        MobEffectInstance effect2 = new MobEffectInstance(MobEffects.BLINDNESS, 400, 1);
+        MobEffectInstance effect1 = new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 500, 1);
+        MobEffectInstance effect2 = new MobEffectInstance(MobEffects.BLINDNESS, 500, 1);
 
         player.addEffect(effect1);
         player.addEffect(effect2);

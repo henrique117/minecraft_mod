@@ -19,9 +19,9 @@ import net.minecraft.world.level.material.FluidState;
 @SuppressWarnings("deprecation")
 public class BoostedFireOre extends Block {
 
-    private static final int FIRE_SEARCH_RADIUS = 4;
+    private static final int FIRE_SEARCH_RADIUS = 5;
     private static final int FIRE_DRY_RADIUS = 7;
-    private static final float FIRE_EXPLOSION_POWER = 3.0F;
+    private static final float FIRE_EXPLOSION_POWER = 4.0F;
 
     public BoostedFireOre(Properties properties) {
         super(properties);
