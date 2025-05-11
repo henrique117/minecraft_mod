@@ -28,7 +28,7 @@ public class NormalEarthOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        AreaEffectCloud poisonCloud = new AreaEffectCloud(level, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
+        AreaEffectCloud poisonCloud = new AreaEffectCloud(level, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5);
         poisonCloud.setRadius(EARTH_POISON_RADIUS);
         poisonCloud.setDuration(200);
         poisonCloud.setWaitTime(20);
