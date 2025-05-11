@@ -9,6 +9,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluids;
@@ -67,6 +68,12 @@ public class AuxFunctions {
             }
         }
         return false;
+    }
+
+    public static boolean hasLavaNearby(LevelAccessor level, BlockPos pos) {
+        return BlockPos.betweenClosedStream(pos.offset(-3, -3, -3), pos.offset(3, 3, 3))
+            .map(level::getBlockState)
+            .anyMatch(state -> state.is(Blocks.LAVA));
     }
 
     public static void dryNearbyWater(ServerLevel level, BlockPos pos, int radius) {
