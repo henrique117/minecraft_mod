@@ -6,12 +6,9 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
@@ -28,20 +25,24 @@ public class ModBlockTagProvider extends BlockTagsProvider {
             ModBlocks.NORMAL_FIRE_ORE.get(),
             ModBlocks.NORMAL_WATER_ORE.get(),
             ModBlocks.NORMAL_ELETRIC_ORE.get(),
+            ModBlocks.NORMAL_EARTH_ORE.get(),
             ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(),
             ModBlocks.BOOSTED_FIRE_ORE.get(),
             ModBlocks.BOOSTED_WATER_ORE.get(),
-            ModBlocks.BOOSTED_ELETRIC_ORE.get()
+            ModBlocks.BOOSTED_ELETRIC_ORE.get(),
+            ModBlocks.BOOSTED_EARTH_ORE.get()
         );
 
         List<Block> needsDiamondToolList = List.of(
             ModBlocks.NORMAL_FIRE_ORE.get(),
             ModBlocks.NORMAL_WATER_ORE.get(),
             ModBlocks.NORMAL_ELETRIC_ORE.get(),
+            ModBlocks.NORMAL_EARTH_ORE.get(),
             ModBlocks.NORMAL_DEEPSLATE_FIRE_ORE.get(),
             ModBlocks.BOOSTED_FIRE_ORE.get(),
             ModBlocks.BOOSTED_WATER_ORE.get(),
-            ModBlocks.BOOSTED_ELETRIC_ORE.get()
+            ModBlocks.BOOSTED_ELETRIC_ORE.get(),
+            ModBlocks.BOOSTED_EARTH_ORE.get()
         );
 
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(mineableWithPickaxeList.toArray(new Block[0]));

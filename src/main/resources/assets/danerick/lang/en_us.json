@@ -2,26 +2,45 @@
   "item.danerick.fire_ingot": "Fire Ingot",
   "item.danerick.water_ingot": "Water Ingot",
   "item.danerick.eletric_ingot": "Eletric Ingot",
+  "item.danerick.earth_ingot": "Earth Ingot",
+  "item.danerick.endwarp_ingot": "Endwarp Ingot",
+
   "item.danerick.fire_shard": "Fire Shard",
   "item.danerick.water_shard": "Water Shard",
   "item.danerick.eletric_shard": "Eletric Shard",
+  "item.danerick.earth_shard": "Earth Shard",
+  "item.danerick.endwarp_shard": "Endwarp Shard",
 
   "block.danerick.normal_fire_ore": "Fire Ore",
   "block.danerick.normal_water_ore": "Water Ore",
   "block.danerick.normal_eletric_ore": "Eletric Ore",
+  "block.danerick.normal_earth_ore": "Earth Ore",
+  "block.danerick.normal_endwarp_ore": "Endwarp Ore",
+
   "block.danerick.normal_deepslate_fire_ore": "Deepslate Fire Ore",
+
   "block.danerick.boosted_fire_ore": "Boosted Fire Ore",
   "block.danerick.boosted_water_ore": "Boosted Water Ore",
   "block.danerick.boosted_eletric_ore": "Boosted Eletric Ore",
+  "block.danerick.boosted_earth_ore": "Boosted Earth Ore",
+  "block.danerick.boosted_endwarp_ore": "Boosted Endwarp Ore",
 
   "effect.danerick.paralysis_effect": "Paralysis",
 
   "tooltip.danerick.fire_ingot": "Just a Fire Ingot",
   "tooltip.danerick.fire_shard": "Just a Fire Shard",
+
   "tooltip.danerick.water_ingot": "Just a Water Ingot",
   "tooltip.danerick.water_shard": "Just a Water Shard",
+
   "tooltip.danerick.eletric_ingot": "Just a Eletric Ingot",
   "tooltip.danerick.eletric_shard": "Just a Eletric Shard",
+
+  "tooltip.danerick.earth_ingot": "Just a Earth Ingot",
+  "tooltip.danerick.earth_shard": "Just a Earth Shard",
+
+  "tooltip.danerick.endwarp_ingot": "Just a Endwarp Ingot",
+  "tooltip.danerick.endwarp_shard": "Just a Endwarp Shard",
 
   "item_group.danerick.danerick_tab": "Danerick's Mod"
 }

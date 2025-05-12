@@ -1,9 +1,10 @@
 package com.henrique.danerick.block;
 
+import com.henrique.danerick.util.AuxFunctions;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
 import net.minecraft.world.level.Level;
@@ -11,9 +12,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
-public class NormalWaterOre extends Block {
+public class NormalEndwarpOre extends Block {
 
-    public NormalWaterOre(Properties properties) {
+    public NormalEndwarpOre(Properties properties) {
         super(properties);
     }
 
@@ -25,11 +26,11 @@ public class NormalWaterOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        MobEffectInstance effect1 = new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 300, 0);
-        MobEffectInstance effect2 = new MobEffectInstance(MobEffects.BLINDNESS, 300, 0);
+        ItemStack currentItem = player.getMainHandItem();
 
-        player.addEffect(effect1);
-        player.addEffect(effect2);
+        if (currentItem.is(ItemTags.TOOLS)) {
+            AuxFunctions.addRandomCurse(currentItem);
+        }
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }

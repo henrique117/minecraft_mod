@@ -1,10 +1,9 @@
 package com.henrique.danerick.block;
 
-import com.henrique.danerick.init.ModEffects;
-import com.henrique.danerick.util.AuxFunctions;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -14,15 +13,12 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.phys.AABB;
 
-import java.util.List;
+public class BoostedEarthOre extends Block {
 
-public class BoostedEletricOre extends Block {
+    private static final float EARTH_POISON_RADIUS = 5.5F;
 
-    private static final double ELETRIC_PLAYER_SEARCH_RADIUS = 7.0;
-
-    public BoostedEletricOre(Properties properties) {
+    public BoostedEarthOre(Properties properties) {
         super(properties);
     }
 
@@ -35,22 +31,29 @@ public class BoostedEletricOre extends Block {
     public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity) {
         super.stepOn(level, blockPos, blockState, entity);
 
-        MobEffectInstance effect = new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 60, 2);
+        if (entity instanceof LivingEntity livingEntity) {
+            MobEffectInstance effect1 = new MobEffectInstance(MobEffects.CONFUSION, 300, 0);
+            MobEffectInstance effect2 = new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 300, 1);
 
-        if (!level.isClientSide() && entity instanceof LivingEntity livingEntity) {
-            livingEntity.addEffect(effect);
+            livingEntity.addEffect(effect1);
+            livingEntity.addEffect(effect2);
         }
     }
 
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        List<LivingEntity> livingEntitiesNearby = AuxFunctions.getLivingEntitiesNearby(level, pos, ELETRIC_PLAYER_SEARCH_RADIUS);
-        MobEffectInstance effect = new MobEffectInstance(ModEffects.PARALYSIS_EFFECT.get(), 140, 0);
+        AreaEffectCloud poisonCloud = new AreaEffectCloud(level, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5);
+        poisonCloud.setRadius(EARTH_POISON_RADIUS);
+        poisonCloud.setDuration(300);
+        poisonCloud.setWaitTime(20);
+        poisonCloud.setRadiusPerTick(-0.01F);
 
-        for (LivingEntity entity : livingEntitiesNearby) {
-            entity.addEffect(effect);
-        }
+        MobEffectInstance effect = new MobEffectInstance(MobEffects.POISON, 300, 2);
+
+        poisonCloud.addEffect(effect);
+
+        level.addFreshEntity(poisonCloud);
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }

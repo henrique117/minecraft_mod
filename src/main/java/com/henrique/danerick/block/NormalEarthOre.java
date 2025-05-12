@@ -3,6 +3,7 @@ package com.henrique.danerick.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AreaEffectCloud;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Explosion;
@@ -11,9 +12,11 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.FluidState;
 
-public class NormalWaterOre extends Block {
+public class NormalEarthOre extends Block {
 
-    public NormalWaterOre(Properties properties) {
+    private static final float EARTH_POISON_RADIUS = 3F;
+
+    public NormalEarthOre(Properties properties) {
         super(properties);
     }
 
@@ -25,11 +28,17 @@ public class NormalWaterOre extends Block {
     @Override
     public boolean onDestroyedByPlayer(BlockState state, Level level, BlockPos pos, Player player, boolean willHarvest, FluidState fluid) {
 
-        MobEffectInstance effect1 = new MobEffectInstance(MobEffects.DIG_SLOWDOWN, 300, 0);
-        MobEffectInstance effect2 = new MobEffectInstance(MobEffects.BLINDNESS, 300, 0);
+        AreaEffectCloud poisonCloud = new AreaEffectCloud(level, pos.getX() + 0.5, pos.getY() + 1.5, pos.getZ() + 0.5);
+        poisonCloud.setRadius(EARTH_POISON_RADIUS);
+        poisonCloud.setDuration(200);
+        poisonCloud.setWaitTime(20);
+        poisonCloud.setRadiusPerTick(-0.02F);
 
-        player.addEffect(effect1);
-        player.addEffect(effect2);
+        MobEffectInstance effect = new MobEffectInstance(MobEffects.POISON, 300, 0);
+
+        poisonCloud.addEffect(effect);
+
+        level.addFreshEntity(poisonCloud);
 
         return super.onDestroyedByPlayer(state, level, pos, player, willHarvest, fluid);
     }
